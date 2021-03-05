@@ -7,6 +7,13 @@
 void PrintTokens(const std::vector<Token>& tokens, std::ostream& out)
 {
 	//std::cout << "Lexeme   ---    Type   ---   Line number   ---   Position\n";
+
+	if (tokens.size() == 0)
+	{
+		out << "EOF";
+		return;
+	}
+
 	int i = 1;
 	for (auto& token : tokens)
 	{

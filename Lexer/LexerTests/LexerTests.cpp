@@ -201,8 +201,7 @@ BOOST_AUTO_TEST_SUITE(string_type_test)
 		CheckLexemeList(lexer.GetTokensList(),
 			{
 				Token("int", TokenType::KEYWORD, 0, 0),
-				Token("\"", TokenType::ERROR, 0, 3),
-				Token("int", TokenType::KEYWORD, 0, 4),
+				Token("\"int", TokenType::ERROR, 0, 3),
 			}
 		);
 	}

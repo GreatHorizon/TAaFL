@@ -18,6 +18,11 @@ void Lexer::Run()
 		m_lineNumber++;
 		FlushToken();
 	}
+
+	if (m_tokens.size() == 0)
+	{
+		AddToken(Token("EOF", TokenType::END_OF_FILE, 0, 0));
+	}
 }
 
 void Lexer::ProcessLine()
@@ -117,7 +122,8 @@ void Lexer::GetStringLexeme()
 		str.push_back(m_currentString[i]);
 	}
 
-	AddToken(Token("\"", TokenType::ERROR, m_lineNumber, m_position));
+	AddToken(Token("\"" + str, TokenType::ERROR, m_lineNumber, m_position));
+	m_position = m_currentString.size() - 1;
 }
 
 void Lexer::SkipIgnored(char symbol)
@@ -141,7 +147,8 @@ void Lexer::ProcessLexeme(char symbol)
 		SkipComment(symbol);
 	}
 	else if (IsSeparator(std::string(1, symbol)) || IsArithmeticOperator(std::string(1, symbol)) || symbol == BLOCK_OPEN_BRACKET || 
-		symbol == BLOCK_CLOSE_BRACKET || symbol == OPEN_BRACKET || symbol == CLOSE_BRACKET)
+		symbol == BLOCK_CLOSE_BRACKET || symbol == OPEN_BRACKET ||
+		symbol == CLOSE_BRACKET || symbol == OPEN_SQUARE_BRACKET || symbol == CLOSE_SQUARE_BRACKET)
 	{
 		if ((symbol == '+' || symbol == '-') && IsExpFloat())
 		{
@@ -240,6 +247,8 @@ TokenType Lexer::GetTokenBySymbol(std::string const& lexeme)
 	else if (lexeme == "=") return TokenType::ASSIGNMENT;
 	else if (lexeme == ")") return TokenType::CLOSE_BRACKET;
 	else if (IsSeparator(lexeme)) return TokenType::SEPARATOR;
+	else if (lexeme == "[") return TokenType::OPEN_SQUARE_BRACKET;
+	else if (lexeme == "]") return TokenType::CLOSE_SQUARE_BRACKET;
 	else if (IsArithmeticOperator(lexeme)) return TokenType::ARITHMETIC_OPERATOR;
 	else return TokenType::ERROR;
 }
@@ -287,7 +296,6 @@ bool Lexer::IsFloat(std::string const& lexeme) const
 		return false;
 	}
 
-
 	if (lexeme[foundIndex] != '\0')
 	{
 		return false;
@@ -321,6 +329,11 @@ bool Lexer::IsNumber(std::string const& lexeme, int base) const
 
 bool Lexer::IsIdentifier(std::string const& lexeme)
 {
+	if (lexeme.size() > 64)
+	{
+		return false;
+	}
+
 	if (!(lexeme[0] >= 'a' && lexeme[0] <= 'z'
 		|| lexeme[0] >= 'A' && lexeme[0] <= 'Z'
 		|| lexeme[0] == '_'))
@@ -341,6 +354,7 @@ bool Lexer::IsIdentifier(std::string const& lexeme)
 
 	return true;
 }
+
 
 bool Lexer::IsBinaryNumber(std::string const& lexeme) const
 {
@@ -383,7 +397,7 @@ bool Lexer::IsExpFloat() const
 {
 	if (m_currentToken.m_lexeme.size() > 2 && m_currentToken.m_lexeme[m_currentToken.m_lexeme.size() - 1] == 'e')
 	{
-		return IsFloat(m_currentToken.m_lexeme.substr(0, m_currentToken.m_lexeme.size() - 1));
+		return IsFloat(m_currentToken.m_lexeme.substr(0, m_currentToken.m_lexeme.size() - 1)) || IsDecimalNumber(m_currentToken.m_lexeme.substr(0, m_currentToken.m_lexeme.size() - 1));
 	}
 
 	return false;

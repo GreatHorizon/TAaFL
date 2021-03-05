@@ -84,7 +84,10 @@ enum class TokenType
 	LOGICAL_OPERATOR,
 	COMPARISION_OPERATOR,
 	KEYWORD,
-	ASSIGNMENT
+	ASSIGNMENT,
+	OPEN_SQUARE_BRACKET,
+	CLOSE_SQUARE_BRACKET,
+	END_OF_FILE
 };
 
 const std::map<TokenType, std::string> TOKEN_NAMES = {
@@ -106,10 +109,15 @@ const std::map<TokenType, std::string> TOKEN_NAMES = {
 	, {TokenType::LOGICAL_OPERATOR, "Logical operator"}
 	, {TokenType::COMPARISION_OPERATOR, "Comparision operator"}
 	, {TokenType::KEYWORD, "Keyword"}
+	, {TokenType::OPEN_SQUARE_BRACKET, "Open square bracket"}
+	, {TokenType::CLOSE_SQUARE_BRACKET, "Close square bracket"}
 	, {TokenType::ASSIGNMENT, "Assignment"}
+	, {TokenType::END_OF_FILE, "End of file"}
 };
 
 const char BLOCK_OPEN_BRACKET = '{';
 const char BLOCK_CLOSE_BRACKET = '}';
 const char OPEN_BRACKET = '(';
 const char CLOSE_BRACKET = ')';
+const char OPEN_SQUARE_BRACKET = '[';
+const char CLOSE_SQUARE_BRACKET = ']';
