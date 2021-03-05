@@ -1,0 +1,32 @@
+1 - Lexeme("float")   Type(Keyword)   Line number(1)   Position(0)
+
+2 - Lexeme("Sum")   Type(Identifier)   Line number(1)   Position(6)
+
+3 - Lexeme("(")   Type(Open bracket)   Line number(1)   Position(9)
+
+4 - Lexeme("float")   Type(Keyword)   Line number(1)   Position(10)
+
+5 - Lexeme("a")   Type(Identifier)   Line number(1)   Position(16)
+
+6 - Lexeme(",")   Type(Separator)   Line number(1)   Position(17)
+
+7 - Lexeme("float")   Type(Keyword)   Line number(1)   Position(19)
+
+8 - Lexeme("b")   Type(Identifier)   Line number(1)   Position(25)
+
+9 - Lexeme(")")   Type(Close bracket)   Line number(1)   Position(26)
+
+10 - Lexeme("{")   Type(Block open bracket)   Line number(2)   Position(0)
+
+11 - Lexeme("return")   Type(Keyword)   Line number(3)   Position(1)
+
+12 - Lexeme("a")   Type(Identifier)   Line number(3)   Position(8)
+
+13 - Lexeme("+")   Type(Operator)   Line number(3)   Position(10)
+
+14 - Lexeme("b")   Type(Identifier)   Line number(3)   Position(12)
+
+15 - Lexeme(";")   Type(Separator)   Line number(3)   Position(13)
+
+16 - Lexeme("}")   Type(Block close bracket)   Line number(4)   Position(0)
+

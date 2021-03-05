@@ -1,0 +1,5 @@
+//this function returns sum of a and b
+float Sum(float a, float b)
+{
+	return a + b;
+}

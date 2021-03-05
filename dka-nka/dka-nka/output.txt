@@ -1,0 +1,4 @@
+0 1 
+S B DE BC A
+-; DE; BC; DE; A
+B; -; -; A; -

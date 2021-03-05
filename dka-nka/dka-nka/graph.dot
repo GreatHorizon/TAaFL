@@ -1,0 +1,15 @@
+digraph G{
+K [shape="circle"label="K"];
+N [shape="circle"label="N"];
+L [shape="circle"label="L"];
+LM [shape="circle"label="LM"];
+M [shape="circle"label="M"];
+H [shape="circle"label="H"];
+K->N [label="0 "];
+L->M [label="0 "];
+LM->M [label="0 "];
+K->L [label="1 "];
+N->LM [label="1 "];
+LM->H [label="$ "];
+M->H [label="$ "];
+}
